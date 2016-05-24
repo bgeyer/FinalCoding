@@ -1,8 +1,11 @@
 package rocket.app.view;
 
 import eNums.eAction;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import rocket.app.MainApp;
 import rocketCode.Action;
 import rocketData.LoanRequest;
@@ -23,14 +26,21 @@ public class MortgageController {
 	//		Button   -  button to calculate the loan payment
 	//		Label    -  to show error messages (exception throw, payment exception)
 
-	public void setMainApp(MainApp mainApp) {
+	ObservableList<String> options = 
+		    FXCollections.observableArrayList(
+		        "15 Years",
+		        "30 Years"
+		    );
+	final ComboBox cmbTerm = new ComboBox(options);
+	
+		public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 	
 	
 	//	TODO - RocketClient.RocketMainController
 	//			Call this when btnPayment is pressed, calculate the payment
-	@FXML
+	
 	public void btnCalculatePayment(ActionEvent event)
 	{
 		Object message = null;
